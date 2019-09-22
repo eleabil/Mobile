@@ -25,7 +25,7 @@ public class HomePageActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user!=null){
-            name.setText(user.getEmail());
+            name.setText(user.getDisplayName());
         }else {
             Toast.makeText(HomePageActivity.this, "Error", Toast.LENGTH_LONG).show();
         }

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">FirebaseAuth</string>
-    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="signup">Sign Up</string>
     <string name="have_acc_link">Already have an account?</string>
@@ -8,4 +7,7 @@
     <string name="logout">Log Out</string>
     <string name="not_registered_link">Not registered yet? Sign Up!</string>
     <string name="successfull_login">Welcome!</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone</string>
 </resources>

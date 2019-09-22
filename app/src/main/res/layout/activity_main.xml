@@ -6,7 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
+
+    <EditText
+    android:id="@+id/signup_activity_username"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:hint="@string/username"
+    android:inputType="text"
+    tools:ignore="Autofill,LabelFor"
+    android:layout_gravity="center"
+    />
+
+    <EditText
+        android:id="@+id/signup_activity_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        tools:ignore="Autofill,LabelFor"
+        android:layout_gravity="center"
+        />
 
     <EditText
         android:id="@+id/signup_activity_email"

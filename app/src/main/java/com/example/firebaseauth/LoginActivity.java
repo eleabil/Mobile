@@ -49,29 +49,32 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void logIn(final String email, final String password){
-        if(email.isEmpty()){
+    private void logIn(final String email, final String password) {
+        if (email.isEmpty()) {
             emailField.setError("Please enter email");
             emailField.requestFocus();
-        }
-        else if (password.isEmpty()){
+        } else if (password.isEmpty()) {
             passwordField.setError("Please enter password");
             passwordField.requestFocus();
-        }
-        else {
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                     //   Toast.makeText(LoginActivity.this, "Log In success", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-                    }else{
-                        Toast.makeText(LoginActivity.this, "Log In error", Toast.LENGTH_LONG).show();
+        } else {
+            if (password.length() < 8) {
+                passwordField.setError("Minimum 8 characters");
+            } else {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            //   Toast.makeText(LoginActivity.this, "Log In success", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Log In error", Toast.LENGTH_LONG).show();
+                        }
+
                     }
-
-                }
-            });
+                });
+            }
         }
-    }
 
+    }
 }
