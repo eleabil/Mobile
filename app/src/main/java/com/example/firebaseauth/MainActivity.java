@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isValid(final String email, final String password, final String username, final String phone){
         boolean isValid = true;
 
-        if (!username.matches("^[A-Za-z]+$")) {
+        if (!username.matches("^[A-Za-z]$")) {
             usernameField.setError("Please enter username");
             usernameField.requestFocus();
             isValid = false;

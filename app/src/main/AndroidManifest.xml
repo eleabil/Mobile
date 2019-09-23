@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.firebaseauth.HomePageActivity"
+            android:noHistory="true"
             android:label="Home"></activity>
         <activity android:name="com.example.firebaseauth.LoginActivity"
+            android:noHistory="true"
             android:label="Log In"/>
         <activity android:name="com.example.firebaseauth.MainActivity"
+            android:noHistory="true"
             android:label="Sign Up">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
