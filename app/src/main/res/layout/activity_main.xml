@@ -9,48 +9,71 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <EditText
-    android:id="@+id/signup_activity_username"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:hint="@string/username"
-    android:inputType="text"
-    tools:ignore="Autofill,LabelFor"
-    android:layout_gravity="center"
-    />
 
-    <EditText
-        android:id="@+id/signup_activity_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_layout_username"
+        android:hint="@string/username"
+        android:layout_width="213dp"
+        app:errorEnabled="true"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_activity_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_layout_phone"
         android:hint="@string/phone"
-        android:inputType="phone"
-        tools:ignore="Autofill,LabelFor"
-        android:layout_gravity="center"
-        />
+        android:layout_width="213dp"
+        app:errorEnabled="true"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/signup_activity_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_activity_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="phone" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_layout_email"
         android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        tools:ignore="Autofill,LabelFor"
-        android:layout_gravity="center"
-        />
+        android:layout_width="213dp"
+        app:errorEnabled="true"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/signup_activity_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_activity_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_layout_password"
         android:hint="@string/password"
-        android:inputType="textPassword"
-        android:layout_gravity="center"
-        tools:ignore="Autofill,LabelFor" />
+        android:layout_width="213dp"
+        app:errorEnabled="true"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_activity_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signup_activity_signupBtn"

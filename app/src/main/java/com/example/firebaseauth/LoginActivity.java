@@ -7,18 +7,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
+
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText emailField, passwordField;
+    private TextInputEditText emailField, passwordField;
     private FirebaseAuth auth;
 
     @Override
@@ -35,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String email = emailField.getText().toString();
-                final String password = passwordField.getText().toString();
+                final String email = Objects.requireNonNull(emailField.getText()).toString().trim();
+                final String password = Objects.requireNonNull(passwordField.getText()).toString().trim();
                 logIn(email, password);
 
             }
@@ -51,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void logIn(final String email, final String password) {
         if (email.isEmpty()) {
+
             emailField.setError("Please enter email");
             emailField.requestFocus();
         } else if (password.isEmpty()) {
