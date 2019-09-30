@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -19,10 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-
 public class LoginActivity extends AppCompatActivity {
 
-    private TextInputEditText emailField, passwordField;
+    private TextInputEditText emailField;
+    private TextInputEditText passwordField;
     private FirebaseAuth auth;
 
     @Override
@@ -42,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
                 final String email = Objects.requireNonNull(emailField.getText()).toString().trim();
                 final String password = Objects.requireNonNull(passwordField.getText()).toString().trim();
                 logIn(email, password);
-
             }
         });
         loginLink.setOnClickListener(new View.OnClickListener() {
@@ -54,32 +52,40 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logIn(final String email, final String password) {
-        if (email.isEmpty()) {
-
-            emailField.setError("Please enter email");
-            emailField.requestFocus();
-        } else if (password.isEmpty()) {
-            passwordField.setError("Please enter password");
-            passwordField.requestFocus();
-        } else {
-            if (password.length() < 8) {
-                passwordField.setError("Minimum 8 characters");
-            } else {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            //   Toast.makeText(LoginActivity.this, "Log In success", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Log In error", Toast.LENGTH_LONG).show();
+        if (isValid(email, password)) {
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
+                            }
                         }
+                    });
+        }
+    }
 
-                    }
-                });
-            }
+    private boolean isValid(final String email, final String password) {
+        boolean isValid = true;
+
+        if (email.isEmpty()) {
+            emailField.setError(getString(R.string.enter_email));
+            emailField.requestFocus();
+            isValid = false;
+        } else {
+            emailField.setError(null);
         }
 
+        if (password.isEmpty() || password.length() < 8) {
+            passwordField.setError(getString(R.string.password_limit));
+            passwordField.requestFocus();
+            isValid = false;
+        } else {
+            passwordField.setError(null);
+        }
+
+        return isValid;
     }
 }

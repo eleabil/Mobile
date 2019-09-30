@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,7 +22,10 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextInputEditText emailField, passwordField, usernameField, phoneField;
+    private TextInputEditText emailField;
+    private TextInputEditText passwordField;
+    private TextInputEditText usernameField;
+    private TextInputEditText phoneField;
     private FirebaseAuth auth;
 
     @Override
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         Button signupBtn = findViewById(R.id.signup_activity_signupBtn);
         TextView loginLink = findViewById(R.id.signup_activity_loginLink);
 
-
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,39 +52,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       loginLink.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               startActivity(new Intent(MainActivity.this, LoginActivity.class));
-           }
-       });
-
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
     }
 
-    private void signUp(final String email, final String password, final String username, final String phone){
+    private void signUp(final String email, final String password, final String username, final String phone) {
 
-        if (!isValid(email, password, username, phone)){
-            Log.i("Tag", "Validation error");
-        } else {
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (!task.isSuccessful()){
-                        Toast.makeText(MainActivity.this, "This email is already taken", Toast.LENGTH_LONG).show();
-                    }else{
-                        onCompleteSuccess(username);
-                    }
-
-                }
-            });
+        if (isValid(email, password, username, phone)) {
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, getString(R.string.email_taken), Toast.LENGTH_LONG).show();
+                            } else {
+                                onCompleteSuccess(username);
+                            }
+                        }
+                    });
         }
     }
 
-    public boolean isValid(final String email, final String password, final String username, final String phone){
+    public boolean isValid(final String email, final String password, final String username, final String phone) {
         boolean isValid = true;
 
         if (username.isEmpty()) {
-            usernameField.setError("Please enter username");
+            usernameField.setError(getString(R.string.enter_username));
             usernameField.requestFocus();
             isValid = false;
         } else {
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
-            phoneField.setError("Please enter valid phone number");
+            phoneField.setError(getString(R.string.enter_valid_phone));
             phoneField.requestFocus();
             isValid = false;
         } else {
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailField.setError("Please enter a valid email");
+            emailField.setError(getString(R.string.enter_valid_email));
             emailField.requestFocus();
             isValid = false;
         } else {
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty() || password.length() < 8) {
-            passwordField.setError("Minimum 8 characters");
+            passwordField.setError(getString(R.string.password_limit));
             passwordField.requestFocus();
             isValid = false;
         } else {
@@ -122,19 +120,17 @@ public class MainActivity extends AppCompatActivity {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(username).build();
 
-
         if (user != null) {
             user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                MainActivity.this.startActivity(new Intent(MainActivity.this, HomePageActivity.class));
-                            }
-                        }
-                    });
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    }
+                }
+            });
         }
     }
-
 }
 
 

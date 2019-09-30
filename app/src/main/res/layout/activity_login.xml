@@ -4,27 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
-
-
-    <!--    <EditText-->
-<!--        android:id="@+id/login_activity_email"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:hint="@string/email"-->
-<!--        android:inputType="textEmailAddress"-->
-<!--        android:layout_gravity="center"-->
-<!--        tools:ignore="Autofill" />-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_layout_email"
-        android:hint="@string/email"
         android:layout_width="213dp"
-        app:errorEnabled="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_activity_email"
@@ -37,20 +26,17 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_layout_password"
-        android:hint="@string/password"
         android:layout_width="213dp"
-        app:errorEnabled="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_activity_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,14 +44,14 @@
         android:id="@+id/login_activity_loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:text="@string/login" />
 
     <TextView
         android:id="@+id/login_activity_loginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/not_registered_link"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:text="@string/not_registered_link" />
 
 </LinearLayout>

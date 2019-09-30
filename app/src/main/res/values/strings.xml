@@ -6,8 +6,18 @@
     <string name="login">Log In</string>
     <string name="logout">Log Out</string>
     <string name="not_registered_link">Not registered yet? Sign Up!</string>
-    <string name="successfull_login">Welcome!</string>
+    <string name="successful_login">Welcome!</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="phone">Phone</string>
+    <string name="enter_email">Please enter email</string>
+    <string name="enter_valid_email">Please enter a valid email</string>
+    <string name="enter_username">Please enter username</string>
+    <string name="enter_valid_phone">Please enter valid phone number</string>
+    <string name="password_limit">Minimum 8 characters</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="login_error">Log In error</string>
+    <string name="provide_credentials">Provide credentials</string>
+    <string name="email_taken">This email is already taken</string>
+    <string name="error">Error</string>
 </resources>

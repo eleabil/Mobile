@@ -3,33 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    tools:context=".HomePageActivity">
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
 
     <TextView
         android:id="@+id/home_activity_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/successfull_login"
         android:layout_gravity="center"
-        android:textSize="48sp"
- />
+        android:text="@string/successful_login"
+        android:textSize="48sp" />
+
     <TextView
         android:id="@+id/home_activity_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="24sp"
         android:layout_marginTop="20sp"
-        />
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/home_activity_logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
         android:layout_gravity="center"
-        android:layout_marginTop="70sp"/>
+        android:layout_marginTop="70sp"
+        android:text="@string/logout" />
 
 </LinearLayout>
