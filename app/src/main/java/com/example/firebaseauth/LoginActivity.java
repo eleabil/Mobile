@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             } else {
-                                error();
+                                loginError();
                             }
                         }
                     });
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         return isValid;
     }
 
-    private void error(){
+    private void loginError(){
         Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
     }
 }

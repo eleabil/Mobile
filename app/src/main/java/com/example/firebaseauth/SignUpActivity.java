@@ -85,62 +85,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isEmailValid(final String email) {
-        boolean isValid = true;
-
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailFieldLayout.setError(getString(R.string.enter_valid_email));
-            emailFieldLayout.requestFocus();
-            isValid = false;
-        } else {
-            emailFieldLayout.setError(null);
-        }
-
-        return isValid;
-    }
-
-    public boolean isPasswordValid(final String password) {
-        boolean isValid = true;
-
-        if (password.isEmpty() || password.length() < 8) {
-            passwordFieldLayout.setError(getString(R.string.password_limit));
-            passwordFieldLayout.requestFocus();
-            isValid = false;
-        } else {
-            passwordFieldLayout.setError(null);
-        }
-
-        return isValid;
-    }
-
-    public boolean isUsernameValid(final String username) {
-        boolean isValid = true;
-
-        if (username.isEmpty()) {
-            usernameFieldLayout.setError(getString(R.string.enter_username));
-            usernameFieldLayout.requestFocus();
-            isValid = false;
-        } else {
-            usernameFieldLayout.setError(null);
-        }
-
-        return isValid;
-    }
-
-    public boolean isPhoneValid(final String phone) {
-        boolean isValid = true;
-
-        if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
-            phoneFieldLayout.setError(getString(R.string.enter_valid_phone));
-            phoneFieldLayout.requestFocus();
-            isValid = false;
-        } else {
-            phoneFieldLayout.setError(null);
-        }
-
-        return isValid;
-    }
-
     private void onCompleteSuccess(final String username) {
         FirebaseUser user = auth.getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -156,5 +100,61 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private boolean isEmailValid(final String email) {
+        boolean isValid = true;
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailFieldLayout.setError(getString(R.string.enter_valid_email));
+            emailFieldLayout.requestFocus();
+            isValid = false;
+        } else {
+            emailFieldLayout.setError(null);
+        }
+
+        return isValid;
+    }
+
+    private boolean isPasswordValid(final String password) {
+        boolean isValid = true;
+
+        if (password.isEmpty() || password.length() < 8) {
+            passwordFieldLayout.setError(getString(R.string.password_limit));
+            passwordFieldLayout.requestFocus();
+            isValid = false;
+        } else {
+            passwordFieldLayout.setError(null);
+        }
+
+        return isValid;
+    }
+
+    private boolean isUsernameValid(final String username) {
+        boolean isValid = true;
+
+        if (username.isEmpty()) {
+            usernameFieldLayout.setError(getString(R.string.enter_username));
+            usernameFieldLayout.requestFocus();
+            isValid = false;
+        } else {
+            usernameFieldLayout.setError(null);
+        }
+
+        return isValid;
+    }
+
+    private boolean isPhoneValid(final String phone) {
+        boolean isValid = true;
+
+        if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
+            phoneFieldLayout.setError(getString(R.string.enter_valid_phone));
+            phoneFieldLayout.requestFocus();
+            isValid = false;
+        } else {
+            phoneFieldLayout.setError(null);
+        }
+
+        return isValid;
     }
 }
