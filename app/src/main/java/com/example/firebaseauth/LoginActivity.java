@@ -46,13 +46,14 @@ public class LoginActivity extends AppCompatActivity {
         loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
     }
 
     private void logIn(final String email, final String password) {
-        if (isValid(email, password)) {
+
+        if (isEmailValid(email) && isPasswordValid(password)) {
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -60,14 +61,14 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
+                                error();
                             }
                         }
                     });
         }
     }
 
-    private boolean isValid(final String email, final String password) {
+    private boolean isEmailValid(final String email) {
         boolean isValid = true;
 
         if (email.isEmpty()) {
@@ -78,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
             emailField.setError(null);
         }
 
+        return isValid;
+    }
+
+    private boolean isPasswordValid(final String password) {
+        boolean isValid = true;
+
         if (password.isEmpty() || password.length() < 8) {
             passwordField.setError(getString(R.string.password_limit));
             passwordField.requestFocus();
@@ -87,5 +94,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return isValid;
+    }
+
+    private void error(){
+        Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
     }
 }

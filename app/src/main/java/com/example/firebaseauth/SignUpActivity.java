@@ -20,7 +20,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private TextInputEditText emailField;
     private TextInputEditText passwordField;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_up);
 
         auth = FirebaseAuth.getInstance();
         emailField = findViewById(R.id.signup_activity_email);
@@ -55,20 +55,20 @@ public class MainActivity extends AppCompatActivity {
         loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
         });
     }
 
     private void signUp(final String email, final String password, final String username, final String phone) {
 
-        if (isValid(email, password, username, phone)) {
+        if (isEmailPasswordValid(email, password) && isUsernamePhoneEValid(username, phone)) {
             auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, getString(R.string.email_taken), Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.email_taken), Toast.LENGTH_LONG).show();
                             } else {
                                 onCompleteSuccess(username);
                             }
@@ -77,24 +77,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isValid(final String email, final String password, final String username, final String phone) {
+    public boolean isEmailPasswordValid(final String email, final String password) {
         boolean isValid = true;
-
-        if (username.isEmpty()) {
-            usernameField.setError(getString(R.string.enter_username));
-            usernameField.requestFocus();
-            isValid = false;
-        } else {
-            usernameField.setError(null);
-        }
-
-        if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
-            phoneField.setError(getString(R.string.enter_valid_phone));
-            phoneField.requestFocus();
-            isValid = false;
-        } else {
-            phoneField.setError(null);
-        }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailField.setError(getString(R.string.enter_valid_email));
@@ -115,6 +99,28 @@ public class MainActivity extends AppCompatActivity {
         return isValid;
     }
 
+    public boolean isUsernamePhoneEValid(final String username, final String phone) {
+        boolean isValid = true;
+
+        if (username.isEmpty()) {
+            usernameField.setError(getString(R.string.enter_username));
+            usernameField.requestFocus();
+            isValid = false;
+        } else {
+            usernameField.setError(null);
+        }
+
+        if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
+            phoneField.setError(getString(R.string.enter_valid_phone));
+            phoneField.requestFocus();
+            isValid = false;
+        } else {
+            phoneField.setError(null);
+        }
+
+        return isValid;
+    }
+
     private void onCompleteSuccess(final String username) {
         FirebaseUser user = auth.getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -125,12 +131,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        MainActivity.this.startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                     }
                 }
             });
         }
     }
 }
-
-

@@ -15,7 +15,7 @@
         <activity android:name="com.example.firebaseauth.LoginActivity"
             android:noHistory="true"
             android:label="Log In"/>
-        <activity android:name="com.example.firebaseauth.MainActivity"
+        <activity android:name="com.example.firebaseauth.SignUpActivity"
             android:noHistory="true"
             android:label="Sign Up">
             <intent-filter>

@@ -30,15 +30,19 @@ public class HomeActivity extends AppCompatActivity {
         if (user != null) {
             name.setText(user.getDisplayName());
         } else {
-            Toast.makeText(HomeActivity.this, getString(R.string.error), Toast.LENGTH_LONG).show();
+            error();
         }
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 auth.signOut();
-                startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                startActivity(new Intent(HomeActivity.this, SignUpActivity.class));
             }
         });
+    }
+
+    private void error(){
+        Toast.makeText(HomeActivity.this, getString(R.string.error), Toast.LENGTH_LONG).show();
     }
 }
