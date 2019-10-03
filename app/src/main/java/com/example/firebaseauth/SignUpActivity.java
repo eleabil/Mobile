@@ -32,23 +32,15 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText usernameField;
     private TextInputEditText phoneField;
     private FirebaseAuth auth;
+    private Button signupBtn;
+    private TextView loginLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        auth = FirebaseAuth.getInstance();
-        emailField = findViewById(R.id.signup_activity_email);
-        passwordField = findViewById(R.id.signup_activity_password);
-        usernameField = findViewById(R.id.signup_activity_username);
-        phoneField = findViewById(R.id.signup_activity_phone);
-        emailFieldLayout = findViewById(R.id.signup_layout_email);
-        passwordFieldLayout = findViewById(R.id.signup_layout_password);
-        usernameFieldLayout = findViewById(R.id.signup_layout_username);
-        phoneFieldLayout = findViewById(R.id.signup_layout_phone);
-        Button signupBtn = findViewById(R.id.signup_activity_signupBtn);
-        TextView loginLink = findViewById(R.id.signup_activity_loginLink);
+        fieldsInit();
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +61,22 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    private void fieldsInit() {
+        emailFieldLayout = findViewById(R.id.signup_layout_email);
+        passwordFieldLayout = findViewById(R.id.signup_layout_password);
+        usernameFieldLayout = findViewById(R.id.signup_layout_username);
+        phoneFieldLayout = findViewById(R.id.signup_layout_phone);
+        emailField = findViewById(R.id.signup_activity_email);
+        passwordField = findViewById(R.id.signup_activity_password);
+        usernameField = findViewById(R.id.signup_activity_username);
+        phoneField = findViewById(R.id.signup_activity_phone);
+        auth = FirebaseAuth.getInstance();
+        signupBtn = findViewById(R.id.signup_activity_signupBtn);
+        loginLink = findViewById(R.id.signup_activity_loginLink);
+    }
+
     private void signUp(final String email, final String password, final String username, final String phone) {
-        if (isUsernameValid(username) && isPhoneValid(phone) && isEmailValid(email) && isPasswordValid(password)) {
+        if (isDataValid(username, phone, email, password)) {
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -103,58 +109,55 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean isEmailValid(final String email) {
-        boolean isValid = true;
-
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailFieldLayout.setError(getString(R.string.enter_valid_email));
             emailFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             emailFieldLayout.setError(null);
+            return true;
         }
-
-        return isValid;
     }
 
     private boolean isPasswordValid(final String password) {
-        boolean isValid = true;
-
         if (password.isEmpty() || password.length() < 8) {
             passwordFieldLayout.setError(getString(R.string.password_limit));
             passwordFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             passwordFieldLayout.setError(null);
+            return true;
         }
-
-        return isValid;
     }
 
     private boolean isUsernameValid(final String username) {
-        boolean isValid = true;
-
         if (username.isEmpty()) {
             usernameFieldLayout.setError(getString(R.string.enter_username));
             usernameFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             usernameFieldLayout.setError(null);
+            return true;
         }
-
-        return isValid;
     }
 
     private boolean isPhoneValid(final String phone) {
-        boolean isValid = true;
-
         if (phone.isEmpty() || (!phone.matches("^[0-9]$") && phone.length() < 10)) {
             phoneFieldLayout.setError(getString(R.string.enter_valid_phone));
             phoneFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             phoneFieldLayout.setError(null);
+            return true;
         }
+    }
 
-        return isValid;
+    private boolean isDataValid(final String username, final String phone, final String email, final String password) {
+        boolean usernameValid = isUsernameValid(username);
+        boolean phoneValid = isPhoneValid(phone);
+        boolean emailValid = isEmailValid(email);
+        boolean passwordValid = isPasswordValid(password);
+
+        return usernameValid && phoneValid && emailValid && passwordValid;
     }
 }

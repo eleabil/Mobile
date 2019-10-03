@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout passwordFieldLayout;
     private TextInputEditText emailField;
     private TextInputEditText passwordField;
+    private Button loginBtn;
+    private TextView loginLink;
     private FirebaseAuth auth;
 
     @Override
@@ -32,13 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        auth = FirebaseAuth.getInstance();
-        emailField = findViewById(R.id.login_activity_email);
-        passwordField = findViewById(R.id.login_activity_password);
-        emailFieldLayout = findViewById(R.id.login_layout_email);
-        passwordFieldLayout = findViewById(R.id.login_layout_password);
-        Button loginBtn = findViewById(R.id.login_activity_loginBtn);
-        TextView loginLink = findViewById(R.id.login_activity_loginLink);
+        fieldsInit();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +52,19 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void fieldsInit() {
+        auth = FirebaseAuth.getInstance();
+        emailField = findViewById(R.id.login_activity_email);
+        passwordField = findViewById(R.id.login_activity_password);
+        emailFieldLayout = findViewById(R.id.login_layout_email);
+        passwordFieldLayout = findViewById(R.id.login_layout_password);
+        loginBtn = findViewById(R.id.login_activity_loginBtn);
+        loginLink = findViewById(R.id.login_activity_loginLink);
+    }
+
     private void logIn(final String email, final String password) {
 
-        if (isEmailValid(email) && isPasswordValid(password)) {
+        if (isDataValid(email, password)) {
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -74,34 +80,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isEmailValid(final String email) {
-        boolean isValid = true;
-
         if (email.isEmpty()) {
             emailFieldLayout.setError(getString(R.string.enter_email));
             emailFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             emailFieldLayout.setError(null);
+            return true;
         }
-
-        return isValid;
     }
 
     private boolean isPasswordValid(final String password) {
-        boolean isValid = true;
-
         if (password.isEmpty() || password.length() < 8) {
             passwordFieldLayout.setError(getString(R.string.invalid_password));
             passwordFieldLayout.requestFocus();
-            isValid = false;
+            return false;
         } else {
             passwordFieldLayout.setError(null);
+            return true;
         }
-
-        return isValid;
     }
 
-    private void loginError(){
+    private boolean isDataValid(final String email, final String password) {
+        boolean emailValid = isEmailValid(email);
+        boolean passwordValid = isPasswordValid(password);
+
+        return emailValid && passwordValid;
+    }
+
+    private void loginError() {
         Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
     }
 }

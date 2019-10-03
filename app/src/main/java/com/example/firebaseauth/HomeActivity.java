@@ -20,8 +20,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        auth = FirebaseAuth.getInstance();
 
+        auth = FirebaseAuth.getInstance();
         Button logOutBtn = findViewById(R.id.home_activity_logoutBtn);
         TextView name = findViewById(R.id.home_activity_name);
 
