@@ -5,14 +5,16 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".SignUpActivity">
-
+    tools:context=".SignUpActivity"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_layout_username"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username"
         app:errorEnabled="true">
@@ -21,14 +23,13 @@
             android:id="@+id/signup_activity_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_layout_phone"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
         app:errorEnabled="true">
@@ -44,7 +45,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_layout_email"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         app:errorEnabled="true">
@@ -60,7 +61,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_layout_password"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         app:errorEnabled="true">
@@ -74,19 +75,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/signup_activity_signupBtn"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_layout_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/signup" />
+        android:hint="@string/password"
+        app:errorEnabled="true">
+        <Button
+            android:id="@+id/signup_activity_signupBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/signup" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/signup_activity_loginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:paddingTop="24dp"
         android:text="@string/have_acc_link" />
-
 
 </LinearLayout>

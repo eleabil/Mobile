@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_layout_email"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         app:errorEnabled="true">
@@ -26,7 +29,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_layout_password"
-        android:layout_width="213dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         app:errorEnabled="true">
@@ -42,7 +45,7 @@
 
     <Button
         android:id="@+id/login_activity_loginBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/login" />
@@ -52,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/not_registered_link" />
+        android:text="@string/not_registered_link"
+        android:paddingTop="24dp"/>
 
 </LinearLayout>
