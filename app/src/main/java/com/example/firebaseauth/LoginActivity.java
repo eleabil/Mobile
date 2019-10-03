@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,6 +21,8 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextInputLayout emailFieldLayout;
+    private TextInputLayout passwordFieldLayout;
     private TextInputEditText emailField;
     private TextInputEditText passwordField;
     private FirebaseAuth auth;
@@ -32,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         emailField = findViewById(R.id.login_activity_email);
         passwordField = findViewById(R.id.login_activity_password);
+        emailFieldLayout = findViewById(R.id.login_layout_email);
+        passwordFieldLayout = findViewById(R.id.login_layout_password);
         Button loginBtn = findViewById(R.id.login_activity_loginBtn);
         TextView loginLink = findViewById(R.id.login_activity_loginLink);
 
@@ -72,11 +77,11 @@ public class LoginActivity extends AppCompatActivity {
         boolean isValid = true;
 
         if (email.isEmpty()) {
-            emailField.setError(getString(R.string.enter_email));
-            emailField.requestFocus();
+            emailFieldLayout.setError(getString(R.string.enter_email));
+            emailFieldLayout.requestFocus();
             isValid = false;
         } else {
-            emailField.setError(null);
+            emailFieldLayout.setError(null);
         }
 
         return isValid;
@@ -86,11 +91,11 @@ public class LoginActivity extends AppCompatActivity {
         boolean isValid = true;
 
         if (password.isEmpty() || password.length() < 8) {
-            passwordField.setError(getString(R.string.password_limit));
-            passwordField.requestFocus();
+            passwordFieldLayout.setError(getString(R.string.invalid_password));
+            passwordFieldLayout.requestFocus();
             isValid = false;
         } else {
-            passwordField.setError(null);
+            passwordFieldLayout.setError(null);
         }
 
         return isValid;
