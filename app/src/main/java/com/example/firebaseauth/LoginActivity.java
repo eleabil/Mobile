@@ -53,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fieldsInit() {
-        auth = FirebaseAuth.getInstance();
+       // auth = FirebaseAuth.getInstance();
+        auth = getApplicationEx().getAuth();
         emailField = findViewById(R.id.login_activity_email);
         passwordField = findViewById(R.id.login_activity_password);
         emailFieldLayout = findViewById(R.id.login_layout_email);
@@ -110,5 +111,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginError() {
         Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
+    }
+
+    private ApplicationEx getApplicationEx(){
+        return ((ApplicationEx) getApplication());
     }
 }

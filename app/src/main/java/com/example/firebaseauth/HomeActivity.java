@@ -23,7 +23,8 @@ public class HomeActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         Button logOutBtn = findViewById(R.id.home_activity_logoutBtn);
-        TextView name = findViewById(R.id.home_activity_name);
+        Button nextBtn = findViewById(R.id.home_activity_nextBtn);
+        final TextView name = findViewById(R.id.home_activity_name);
 
         final FirebaseUser user = auth.getCurrentUser();
 
@@ -33,11 +34,18 @@ public class HomeActivity extends AppCompatActivity {
             error();
         }
 
-        logOutBtn.setOnClickListener(new View.OnClickListener() {
+                logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 auth.signOut();
                 startActivity(new Intent(HomeActivity.this, SignUpActivity.class));
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, DataListActivity.class));
             }
         });
     }

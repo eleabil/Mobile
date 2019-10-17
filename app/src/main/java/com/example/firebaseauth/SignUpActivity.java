@@ -70,7 +70,8 @@ public class SignUpActivity extends AppCompatActivity {
         passwordField = findViewById(R.id.signup_activity_password);
         usernameField = findViewById(R.id.signup_activity_username);
         phoneField = findViewById(R.id.signup_activity_phone);
-        auth = FirebaseAuth.getInstance();
+       // auth = FirebaseAuth.getInstance();
+        auth = getApplicationEx().getAuth();
         signupBtn = findViewById(R.id.signup_activity_signupBtn);
         loginLink = findViewById(R.id.signup_activity_loginLink);
     }
@@ -159,5 +160,9 @@ public class SignUpActivity extends AppCompatActivity {
         boolean passwordValid = isPasswordValid(password);
 
         return usernameValid && phoneValid && emailValid && passwordValid;
+    }
+
+    private ApplicationEx getApplicationEx(){
+        return ((ApplicationEx) getApplication());
     }
 }
