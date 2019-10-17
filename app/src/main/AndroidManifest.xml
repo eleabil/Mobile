@@ -16,11 +16,11 @@
         <activity android:name=".DataListActivity"
             android:label="Movies"
             android:noHistory="true">
-<!--            <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".HomeActivity"
@@ -34,11 +34,11 @@
             android:name=".SignUpActivity"
             android:label="Sign Up"
             android:noHistory="true">
-            <intent-filter>
+<!--            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
     </application>
 

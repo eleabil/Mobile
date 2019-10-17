@@ -1,9 +1,7 @@
 package com.example.firebaseauth;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 
-import com.google.android.gms.common.api.Api;
 import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Retrofit;
@@ -19,7 +17,6 @@ public class ApplicationEx extends Application {
         super.onCreate();
         auth = FirebaseAuth.getInstance();
         apiService = createApiService();
-
     }
 
     public FirebaseAuth getAuth(){
