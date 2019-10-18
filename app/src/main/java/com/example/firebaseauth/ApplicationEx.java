@@ -22,9 +22,11 @@ public class ApplicationEx extends Application {
     public FirebaseAuth getAuth(){
         return auth;
     }
+
     public  ApiService getApiService(){
         return apiService;
     }
+
     private ApiService createApiService(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://us-central1-fir-auth-bed89.cloudfunctions.net/")

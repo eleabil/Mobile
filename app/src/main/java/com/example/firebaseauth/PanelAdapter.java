@@ -22,7 +22,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     PanelAdapter(Context ctx, List<Panel> panelList){
 
         inflater = LayoutInflater.from(ctx);
-
         this.panelList = panelList;
     }
 
@@ -52,7 +51,11 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     class PanelViewHolder extends RecyclerView.ViewHolder{
 
-        TextView panelType, power, capacity, usagePeriod, address;
+        TextView panelType;
+        TextView power;
+        TextView capacity;
+        TextView usagePeriod;
+        TextView address;
         ImageView photoUrl;
 
 
@@ -66,6 +69,5 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             usagePeriod =  itemView.findViewById(R.id.item_panel_usage_period);
             address =  itemView.findViewById(R.id.item_panel_address);
         }
-
     }
 }
