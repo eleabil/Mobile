@@ -1,13 +1,18 @@
 package com.example.firebaseauth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -19,24 +24,25 @@ public class DataListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout linearLayout;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_list);
 
-        recyclerViewInit();
-
+        fieldsInit();
         loadPanels();
-
         swipeToRefresh();
-
     }
 
-    private void recyclerViewInit(){
+    private void fieldsInit(){
         recyclerView = findViewById(R.id.data_list_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        linearLayout = findViewById(R.id.linearLayout);
+        spinner = findViewById(R.id.progressBar1);
     }
 
     private void loadPanels(){
@@ -47,6 +53,7 @@ public class DataListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Panel>> call, Response<List<Panel>> response) {
                 Log.i("successTag", "SUCCESS");
+                spinner.setVisibility(View.GONE);
                 List<Panel> panels = response.body();
 
                 PanelAdapter adapter = new PanelAdapter(DataListActivity.this, panels);
@@ -55,9 +62,7 @@ public class DataListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Panel>> call, Throwable t) {
-                Toast.makeText(DataListActivity.this,
-                        t.getMessage(), Toast.LENGTH_LONG).show();
-
+                showSnackbar();
                 Log.i("myInfo", "FAILURE");
             }
         });
@@ -77,7 +82,22 @@ public class DataListActivity extends AppCompatActivity {
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
     }
 
+    private void showSnackbar(){
+        Snackbar snackbar = Snackbar
+                .make(linearLayout, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
+                .setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        loadPanels();
+                    }
+                });
+        snackbar.setActionTextColor(ContextCompat.getColor(DataListActivity.this, R.color.colorPrimaryLight));
+        snackbar.show();
+    }
+
     private ApplicationEx getApplicationEx(){
         return ((ApplicationEx) getApplication());
     }
+
+
 }

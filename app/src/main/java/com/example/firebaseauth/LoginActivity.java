@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fieldsInit() {
-       // auth = FirebaseAuth.getInstance();
         auth = getApplicationEx().getAuth();
         emailField = findViewById(R.id.login_activity_email);
         passwordField = findViewById(R.id.login_activity_password);

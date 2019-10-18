@@ -25,4 +25,6 @@
     <string name="power">Power: </string>
     <string name="capacity">Capacity: </string>
     <string name="usage_period">Usage period: </string>
+    <string name="address">Address: </string>
+    <string name="no_internet">No Internet connection</string>
 </resources>

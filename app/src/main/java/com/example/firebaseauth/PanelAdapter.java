@@ -42,6 +42,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         holder.power.setText(panelList.get(position).getPower());
         holder.capacity.setText(panelList.get(position).getCapacity());
         holder.usagePeriod.setText(panelList.get(position).getUsagePeriod());
+        holder.address.setText(panelList.get(position).getAddress());
     }
 
     @Override
@@ -51,7 +52,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     class PanelViewHolder extends RecyclerView.ViewHolder{
 
-        TextView panelType, power, capacity, usagePeriod;
+        TextView panelType, power, capacity, usagePeriod, address;
         ImageView photoUrl;
 
 
@@ -63,8 +64,8 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             power = itemView.findViewById(R.id.item_panel_power);
             capacity =  itemView.findViewById(R.id.item_panel_capacity);
             usagePeriod =  itemView.findViewById(R.id.item_panel_usage_period);
+            address =  itemView.findViewById(R.id.item_panel_address);
         }
 
     }
-
 }

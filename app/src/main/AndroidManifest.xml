@@ -3,7 +3,7 @@
     package="com.example.firebaseauth">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +25,8 @@
         <activity
             android:name=".HomeActivity"
             android:label="Home"
-            android:noHistory="true" />
+            android:noHistory="true" >
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="Log In"

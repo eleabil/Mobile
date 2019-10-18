@@ -16,7 +16,7 @@ public class Panel {
     private String address;
     private String photoUrl;
 
-    public Panel(String panelType, String power, String capacity, String usagePeriod, String address) {
+    public Panel(String panelType, String power, String capacity, String usagePeriod, String address, String photoUrl) {
         this.panelType = panelType;
         this.power = power;
         this.capacity = capacity;

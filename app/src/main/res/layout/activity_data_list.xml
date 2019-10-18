@@ -10,7 +10,15 @@
     android:paddingTop="24dp"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:paddingBottom="24dp">
+    android:paddingBottom="24dp"
+    android:id="@+id/linearLayout">
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLargeInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/circular_progress_bar"
+        android:layout_marginTop="150dp"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/data_list_swipe_refresh"
