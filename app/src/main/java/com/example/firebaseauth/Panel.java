@@ -14,6 +14,7 @@ public class Panel {
     private String capacity;
     private String usagePeriod;
     private String address;
+    private String photoUrl;
 
     public Panel(String panelType, String power, String capacity, String usagePeriod, String address) {
         this.panelType = panelType;
@@ -21,6 +22,7 @@ public class Panel {
         this.capacity = capacity;
         this.usagePeriod = usagePeriod;
         this.address = address;
+        this.photoUrl = photoUrl;
     }
 
     String getPanelType() {
@@ -41,6 +43,10 @@ public class Panel {
 
     String getAddress() {
         return address;
+    }
+
+    String getPhotoUrl() {
+        return photoUrl;
     }
 
 

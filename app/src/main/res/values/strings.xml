@@ -21,4 +21,8 @@
     <string name="email_taken">This email is already taken</string>
     <string name="error">Error</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="panel_type">Panel type: </string>
+    <string name="power">Power: </string>
+    <string name="capacity">Capacity: </string>
+    <string name="usage_period">Usage period: </string>
 </resources>

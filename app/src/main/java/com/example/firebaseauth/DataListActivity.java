@@ -1,15 +1,15 @@
 package com.example.firebaseauth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.material.textview.MaterialTextView;
-
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,17 +17,26 @@ import retrofit2.Response;
 
 public class DataListActivity extends AppCompatActivity {
 
-    private MaterialTextView textViewResult;
-
+    private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_list);
 
-        textViewResult = findViewById(R.id.text_view_result);
+        recyclerViewInit();
 
         loadPanels();
+
+        swipeToRefresh();
+
+    }
+
+    private void recyclerViewInit(){
+        recyclerView = findViewById(R.id.data_list_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void loadPanels(){
@@ -40,7 +49,8 @@ public class DataListActivity extends AppCompatActivity {
                 Log.i("successTag", "SUCCESS");
                 List<Panel> panels = response.body();
 
-                showPanelsInTextView(Objects.requireNonNull(panels));
+                PanelAdapter adapter = new PanelAdapter(DataListActivity.this, panels);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
@@ -53,14 +63,18 @@ public class DataListActivity extends AppCompatActivity {
         });
     }
 
-    private void showPanelsInTextView(List<Panel> panels){
-        for (Panel panel : panels){
-            String content = "";
-            content += "Panel Type: " + panel.getPanelType() + "\n";
-            content += "Power: " + panel.getPower() + "\n";
-            content += "Usage Period: " + panel.getUsagePeriod() +  "\n\n";
-            textViewResult.append(content);
-        }
+    private void swipeToRefresh(){
+        swipeRefreshLayout = findViewById(R.id.data_list_swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        loadPanels();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }
+        );
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
     }
 
     private ApplicationEx getApplicationEx(){

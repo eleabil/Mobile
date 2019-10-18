@@ -70,7 +70,6 @@ public class SignUpActivity extends AppCompatActivity {
         passwordField = findViewById(R.id.signup_activity_password);
         usernameField = findViewById(R.id.signup_activity_username);
         phoneField = findViewById(R.id.signup_activity_phone);
-       // auth = FirebaseAuth.getInstance();
         auth = getApplicationEx().getAuth();
         signupBtn = findViewById(R.id.signup_activity_signupBtn);
         loginLink = findViewById(R.id.signup_activity_loginLink);
@@ -102,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, DataListActivity.class));
                     }
                 }
             });
