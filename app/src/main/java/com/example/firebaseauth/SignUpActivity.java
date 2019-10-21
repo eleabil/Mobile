@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        fieldsInit();
+        initViews();
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void fieldsInit() {
+    private void initViews() {
         emailFieldLayout = findViewById(R.id.signup_layout_email);
         passwordFieldLayout = findViewById(R.id.signup_layout_password);
         usernameFieldLayout = findViewById(R.id.signup_layout_username);

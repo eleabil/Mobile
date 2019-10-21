@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        fieldsInit();
+        initViews();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void fieldsInit() {
+    private void initViews() {
         auth = getApplicationEx().getAuth();
         emailField = findViewById(R.id.login_activity_email);
         passwordField = findViewById(R.id.login_activity_password);

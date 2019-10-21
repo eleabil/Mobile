@@ -12,14 +12,6 @@
     android:paddingBottom="24dp"
     android:id="@+id/linearLayout">
 
-    <ProgressBar
-        android:id="@+id/circular_progress_bar"
-        style="?android:attr/progressBarStyleLargeInverse"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:indeterminateDrawable="@drawable/circular_progress_bar"
-        android:layout_marginTop="150dp"/>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/data_list_swipe_refresh"
         android:layout_width="match_parent"

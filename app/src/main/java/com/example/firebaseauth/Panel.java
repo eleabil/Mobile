@@ -2,14 +2,15 @@ package com.example.firebaseauth;
 
 public class Panel {
 
-    private String panelType;
-    private String power;
-    private String capacity;
-    private String usagePeriod;
-    private String address;
-    private String photoUrl;
+    final String panelType;
+    final String power;
+    final String capacity;
+    final String usagePeriod;
+    final String address;
+    final String photoUrl;
 
-    public Panel(String panelType, String power, String capacity, String usagePeriod, String address, String photoUrl) {
+    public Panel(final String panelType, final String power, final String capacity,
+                 final String usagePeriod, final String address, final String photoUrl) {
         this.panelType = panelType;
         this.power = power;
         this.capacity = capacity;
@@ -18,27 +19,27 @@ public class Panel {
         this.photoUrl = photoUrl;
     }
 
-    String getPanelType() {
+    public String getPanelType() {
         return panelType;
     }
 
-    String getPower() {
+    public String getPower() {
         return power;
     }
 
-    String getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
-    String getUsagePeriod() {
+    public String getUsagePeriod() {
         return usagePeriod;
     }
 
-    String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    String getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 }
