@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        fieldsInit();
+        initViews();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void fieldsInit() {
-        auth = FirebaseAuth.getInstance();
+    private void initViews() {
+        auth = getApplicationEx().getAuth();
         emailField = findViewById(R.id.login_activity_email);
         passwordField = findViewById(R.id.login_activity_password);
         emailFieldLayout = findViewById(R.id.login_layout_email);
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, DataListActivity.class));
                             } else {
                                 loginError();
                             }
@@ -110,5 +110,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginError() {
         Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
+    }
+
+    private ApplicationEx getApplicationEx(){
+        return ((ApplicationEx) getApplication());
     }
 }

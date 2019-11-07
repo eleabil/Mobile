@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        fieldsInit();
+        initViews();
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void fieldsInit() {
+    private void initViews() {
         emailFieldLayout = findViewById(R.id.signup_layout_email);
         passwordFieldLayout = findViewById(R.id.signup_layout_password);
         usernameFieldLayout = findViewById(R.id.signup_layout_username);
@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordField = findViewById(R.id.signup_activity_password);
         usernameField = findViewById(R.id.signup_activity_username);
         phoneField = findViewById(R.id.signup_activity_phone);
-        auth = FirebaseAuth.getInstance();
+        auth = getApplicationEx().getAuth();
         signupBtn = findViewById(R.id.signup_activity_signupBtn);
         loginLink = findViewById(R.id.signup_activity_loginLink);
     }
@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, DataListActivity.class));
                     }
                 }
             });
@@ -159,5 +159,9 @@ public class SignUpActivity extends AppCompatActivity {
         boolean passwordValid = isPasswordValid(password);
 
         return usernameValid && phoneValid && emailValid && passwordValid;
+    }
+
+    private ApplicationEx getApplicationEx(){
+        return ((ApplicationEx) getApplication());
     }
 }
