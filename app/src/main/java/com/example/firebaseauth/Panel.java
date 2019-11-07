@@ -2,12 +2,12 @@ package com.example.firebaseauth;
 
 public class Panel {
 
-    final String panelType;
-    final String power;
-    final String capacity;
-    final String usagePeriod;
-    final String address;
-    final String photoUrl;
+    private final String panelType;
+    private final String power;
+    private final String capacity;
+    private final String usagePeriod;
+    private final String address;
+    private final String photoUrl;
 
     public Panel(final String panelType, final String power, final String capacity,
                  final String usagePeriod, final String address, final String photoUrl) {

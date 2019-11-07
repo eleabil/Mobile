@@ -20,7 +20,7 @@
                 android:id="@+id/item_panel_image_view"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:contentDescription="@string/panel_type">
+                android:contentDescription= "@string/panel_type">
             </ImageView>
         </LinearLayout>
 

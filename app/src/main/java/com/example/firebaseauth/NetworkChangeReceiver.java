@@ -25,12 +25,14 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
     private boolean isOnline(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm != null) {
-            NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
-            return capabilities != null &&
-                    (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI));
+
+        if (cm == null) {
+            return false;
         }
-        return false;
+
+        NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+        return capabilities != null &&
+                (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI));
     }
 }

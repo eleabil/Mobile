@@ -27,8 +27,8 @@ public class ApplicationEx extends Application {
         return apiService;
     }
 
-    final ApiService createApiService(){
-        Retrofit retrofit = new Retrofit.Builder()
+    private ApiService createApiService(){
+        final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://us-central1-fir-auth-bed89.cloudfunctions.net/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

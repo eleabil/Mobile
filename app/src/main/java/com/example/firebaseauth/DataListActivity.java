@@ -47,7 +47,7 @@ public class DataListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         linearLayout = findViewById(R.id.linearLayout);
         swipeRefreshLayout = findViewById(R.id.data_list_swipe_refresh);
-        doSwipeToRefresh();
+        setupSwipeToRefresh();
     }
 
     private void loadPanels(){
@@ -71,7 +71,7 @@ public class DataListActivity extends AppCompatActivity {
         });
     }
 
-    private void doSwipeToRefresh(){
+    private void setupSwipeToRefresh(){
         swipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
