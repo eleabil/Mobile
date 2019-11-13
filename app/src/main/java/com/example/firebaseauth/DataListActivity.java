@@ -35,13 +35,13 @@ public class DataListActivity extends AppCompatActivity {
 
     }
 
-    private void registerNetworkMonitoring() {
+    public void registerNetworkMonitoring() {
         IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         NetworkChangeReceiver receiver = new NetworkChangeReceiver(linearLayout);
         this.registerReceiver(receiver, filter);
     }
 
-    private void initViews(){
+    public void initViews(){
         recyclerView = findViewById(R.id.data_list_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -50,7 +50,7 @@ public class DataListActivity extends AppCompatActivity {
         setupSwipeToRefresh();
     }
 
-    private void loadPanels(){
+    public void loadPanels(){
         swipeRefreshLayout.setRefreshing(true);
         final ApiService apiService = getApplicationEx().getApiService();
         final Call<List<Panel>> call = apiService.getPanels();
@@ -71,7 +71,7 @@ public class DataListActivity extends AppCompatActivity {
         });
     }
 
-    private void setupSwipeToRefresh(){
+    public void setupSwipeToRefresh(){
         swipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -84,7 +84,7 @@ public class DataListActivity extends AppCompatActivity {
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
     }
 
-    private ApplicationEx getApplicationEx(){
+    public ApplicationEx getApplicationEx(){
         return ((ApplicationEx) getApplication());
     }
 }
