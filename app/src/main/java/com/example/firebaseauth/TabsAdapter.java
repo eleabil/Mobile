@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabsAdapter extends FragmentStateAdapter {
-        public static final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {
+        private static final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {
             {
                 add(new DataListFragment());
                 add(new SampleFragment());

@@ -31,9 +31,7 @@ public class DataListFragment extends Fragment {
     private PanelAdapter adapter;
     private View rootView;
 
-    public DataListFragment() {
-        // Required empty public constructor
-    }
+    public DataListFragment() {}
 
     @Nullable
     @Override

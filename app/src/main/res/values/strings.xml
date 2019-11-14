@@ -36,4 +36,7 @@
     <string name="update">Update</string>
     <string name="enter_new_username">Enter new username</string>
     <string name="profile_picture">Profile picture</string>
+    <string name="image_uploaded">Image uploaded!</string>
+    <string name="username_updated">Username is updated!</string>
+    <string name="email_updated">Email is updated!</string>
 </resources>

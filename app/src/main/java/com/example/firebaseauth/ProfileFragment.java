@@ -3,7 +3,6 @@ package com.example.firebaseauth;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,6 @@ public class ProfileFragment extends Fragment {
     private TextInputEditText newUsernameField;
     private TextInputLayout newEmailLayout;
     private TextInputEditText newEmailField;
-    private TextView newUsernameTv;
     private Button logoutBtn;
     private Button usernameSubmitBtn;
     private Button emailSubmitBtn;
@@ -91,7 +89,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 String newEmail = Objects.requireNonNull(newEmailField.getText()).toString().trim();
                 if (isEmailValid(newEmail)){
-                  //  newUsernameTv.setText(newEmail);
                     updateEmail(user, newEmail);
                 }
             }
@@ -125,13 +122,11 @@ public class ProfileFragment extends Fragment {
                 ImageName.putFile(Objects.requireNonNull(ImageData)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.i("My", "uploaded");
-                        Toast.makeText(getActivity(),"Uploaded",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),getString(R.string.image_uploaded),Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 placeImage();
-
             }
         }
     }
@@ -175,7 +170,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getActivity(),"username updated: " + newName, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),getString(R.string.username_updated), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -185,11 +180,9 @@ public class ProfileFragment extends Fragment {
         user.updateEmail(newEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getActivity(),"email updated: " + newEmail,Toast.LENGTH_SHORT).show();
-                Log.i("My_TAG", "new email " + newEmail);
+                Toast.makeText(getActivity(),getString(R.string.email_updated),Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private boolean isUsernameValid(final String username) {

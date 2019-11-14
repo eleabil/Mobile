@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PanelDetailsActivity"
+        <activity android:name="PanelDetailsActivity"
             android:label="Details"/>
         <activity
             android:name=".LoginActivity"
@@ -31,9 +31,6 @@
             android:name=".SignUpActivity"
             android:label="Sign Up"
             android:noHistory="true"/>
-
-
-
 
         <receiver android:name=".NetworkChangeReceiver">
             <intent-filter>
