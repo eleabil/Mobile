@@ -1,9 +1,12 @@
 package com.example.firebaseauth;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +19,10 @@ import java.util.List;
 public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
     private List<Panel> panelList;
+    private Context context;
 
-     public PanelAdapter(List<Panel> panelList){
+     public PanelAdapter(Context context, List<Panel> panelList){
+         this.context = context;
          this.panelList = panelList;
     }
 
@@ -26,6 +31,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     public PanelAdapter.PanelViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                             final int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_panel, parent, false);
+        //context = parent.getContext();
         return new PanelViewHolder(itemView);
     }
 
@@ -38,6 +44,13 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         holder.capacity.setText(panelList.get(position).getCapacity());
         holder.usagePeriod.setText(panelList.get(position).getUsagePeriod());
         holder.address.setText(panelList.get(position).getAddress());
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openItemDetails(position);
+            }
+        });
+
     }
 
     @Override
@@ -53,6 +66,8 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         private TextView usagePeriod;
         private TextView address;
         private ImageView photoUrl;
+        private LinearLayout parentLayout;
+
 
         private PanelViewHolder(final View itemView) {
             super(itemView);
@@ -63,6 +78,19 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             capacity =  itemView.findViewById(R.id.item_panel_capacity);
             usagePeriod =  itemView.findViewById(R.id.item_panel_usage_period);
             address =  itemView.findViewById(R.id.item_panel_address);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
         }
+    }
+
+    private void openItemDetails(int position){
+        Intent intent = new Intent(context, PanelDetailsActivity.class);
+        intent.putExtra("panel_type", panelList.get(position).getPanelType());
+        intent.putExtra("power", panelList.get(position).getPower());
+        intent.putExtra("capacity", panelList.get(position).getCapacity());
+        intent.putExtra("usage_period", panelList.get(position).getUsagePeriod());
+        intent.putExtra("address", panelList.get(position).getAddress());
+        intent.putExtra("image", panelList.get(position).getPhotoUrl());
+
+        context.startActivity(intent);
     }
 }

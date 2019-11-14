@@ -21,11 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".DataListActivity"
-            android:label="Solar Panels"
-            android:noHistory="true" />
+        <activity android:name=".PanelDetailsActivity"
+            android:label="Details"/>
         <activity
             android:name=".LoginActivity"
             android:label="Log In"
