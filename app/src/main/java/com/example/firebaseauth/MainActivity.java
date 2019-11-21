@@ -10,8 +10,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
-    ViewPager2 viewPager;
-    TabsAdapter tabsAdapter;
+    private ViewPager2 viewPager;
+    private TabsAdapter tabsAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

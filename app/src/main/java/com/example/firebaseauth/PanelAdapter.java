@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
@@ -31,7 +29,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     public PanelAdapter.PanelViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                             final int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_panel, parent, false);
-        //context = parent.getContext();
         return new PanelViewHolder(itemView);
     }
 
@@ -50,7 +47,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
                 openItemDetails(position);
             }
         });
-
     }
 
     @Override
@@ -67,7 +63,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         private TextView address;
         private ImageView photoUrl;
         private LinearLayout parentLayout;
-
 
         private PanelViewHolder(final View itemView) {
             super(itemView);

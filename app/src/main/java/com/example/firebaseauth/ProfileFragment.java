@@ -50,57 +50,28 @@ public class ProfileFragment extends Fragment {
     private StorageReference Folder;
     private StorageReference ImageName;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        auth = FirebaseAuth.getInstance();
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        initViews(root);
-
-        return root;
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        user = auth.getCurrentUser();
-        if (user != null) {
-            username.setText(user.getDisplayName());
-            email.setText(user.getEmail());
-            ImageName = Folder.child(user.getUid() + ".jpg");
-            placeImage();
-        } else {
-            Toast.makeText(getActivity(),getString(R.string.error),Toast.LENGTH_SHORT).show();
-        }
+        initViews(Objects.requireNonNull(getView()));
+        getUserInfo();
 
         usernameSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newUsername = Objects.requireNonNull(newUsernameField.getText()).toString().trim();
-                if (isUsernameValid(newUsername)){
-                    username.setText(newUsername);
-                    updateUsername(user, newUsername);
-                }
+                onPressUsernameUpdateBtn();
             }
         });
 
         emailSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newEmail = Objects.requireNonNull(newEmailField.getText()).toString().trim();
-                if (isEmailValid(newEmail)){
-                    updateEmail(user, newEmail);
-                }
-            }
-        });
-
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                Intent i = new Intent(getActivity(), LoginActivity.class);
-                startActivity(i);
-                Objects.requireNonNull(getActivity()).overridePendingTransition(0, 0);
+                onPressEmailUpdateBtn();
             }
         });
 
@@ -110,6 +81,47 @@ public class ProfileFragment extends Fragment {
                 uploadProfilePicture();
             }
         });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onPressLogoutBtn();
+            }
+        });
+    }
+
+    private void onPressLogoutBtn() {
+        auth.signOut();
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        startActivity(i);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(0, 0);
+    }
+
+    private void onPressEmailUpdateBtn() {
+        String newEmail = Objects.requireNonNull(newEmailField.getText()).toString().trim();
+        if (isEmailValid(newEmail)){
+            updateEmail(user, newEmail);
+        }
+    }
+
+    private void onPressUsernameUpdateBtn() {
+        String newUsername = Objects.requireNonNull(newUsernameField.getText()).toString().trim();
+        if (isUsernameValid(newUsername)){
+            username.setText(newUsername);
+            updateUsername(user, newUsername);
+        }
+    }
+
+    private void getUserInfo() {
+        user = auth.getCurrentUser();
+        if (user != null) {
+            username.setText(user.getDisplayName());
+            email.setText(user.getEmail());
+            ImageName = Folder.child(user.getUid() + ".jpg");
+            placeImage();
+        } else {
+            Toast.makeText(getActivity(),getString(R.string.error),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -132,6 +144,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initViews(View root){
+        auth = FirebaseAuth.getInstance();
         newUsernameLayout = root.findViewById(R.id.fragment_profile_layout_new_username);
         newUsernameField = root.findViewById(R.id.fragment_profile_new_username);
         newEmailLayout = root.findViewById(R.id.fragment_profile_layout_new_email);
@@ -156,11 +169,12 @@ public class ProfileFragment extends Fragment {
         ImageName.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.get().load(uri.toString()).into(profilePicture);                    }
+                Picasso.get().load(uri.toString()).into(profilePicture);
+            }
         });
     }
 
-    private void updateUsername(final FirebaseUser user, final String newName){
+    private void updateUsername(FirebaseUser user, String newName){
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(newName)
                 .build();
@@ -181,11 +195,12 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getActivity(),getString(R.string.email_updated),Toast.LENGTH_SHORT).show();
+                email.setText(newEmail);
             }
         });
     }
 
-    private boolean isUsernameValid(final String username) {
+    private boolean isUsernameValid(String username) {
         if (username.isEmpty()) {
             newUsernameLayout.setError(getString(R.string.enter_username));
             newUsernameLayout.requestFocus();
@@ -196,7 +211,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private boolean isEmailValid(final String email) {
+    private boolean isEmailValid(String email) {
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             newEmailLayout.setError(getString(R.string.enter_valid_email));
             newEmailLayout.requestFocus();

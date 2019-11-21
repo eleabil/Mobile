@@ -29,20 +29,20 @@ public class DataListFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayout linearLayout;
     private PanelAdapter adapter;
-    private View rootView;
 
     public DataListFragment() {}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_data_list, container, false);
+        return inflater.inflate(R.layout.fragment_data_list, container, false);
+    }
 
-        initViews();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initViews(Objects.requireNonNull(getView()));
         registerNetworkMonitoring();
         loadPanels();
-
-        return rootView;
     }
 
     private void registerNetworkMonitoring() {
@@ -51,12 +51,12 @@ public class DataListFragment extends Fragment {
         Objects.requireNonNull(getActivity()).registerReceiver(receiver, filter);
     }
 
-    private void initViews(){
-        recyclerView = rootView.findViewById(R.id.data_list_recycler_view);
+    private void initViews(View root){
+        recyclerView = root.findViewById(R.id.data_list_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        linearLayout = rootView.findViewById(R.id.linearLayout);
-        swipeRefreshLayout = rootView.findViewById(R.id.data_list_swipe_refresh);
+        linearLayout = root.findViewById(R.id.linearLayout);
+        swipeRefreshLayout = root.findViewById(R.id.data_list_swipe_refresh);
         setupSwipeToRefresh();
     }
 

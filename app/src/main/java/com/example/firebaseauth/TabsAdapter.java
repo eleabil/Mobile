@@ -10,28 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabsAdapter extends FragmentStateAdapter {
-        private static final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {
-            {
-                add(new DataListFragment());
-                add(new SampleFragment());
-                add(new ProfileFragment());
-            }
-        };
 
-        public TabsAdapter(final FragmentManager fragmentManager,  @NonNull Lifecycle lifecycle) {
-            super(fragmentManager, lifecycle);
+    private static final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {
+        {
+            add(new DataListFragment());
+            add(new SampleFragment());
+            add(new ProfileFragment());
         }
+    };
 
-        @NonNull
-        @Override
-        public Fragment createFragment(final int position) {
-            return FRAGMENTS.get(position);
-        }
-
-        @Override
-        public int getItemCount() {
-            return FRAGMENTS.size();
-        }
-
+    public TabsAdapter(final FragmentManager fragmentManager,  @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
     }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(final int position) {
+        return FRAGMENTS.get(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return FRAGMENTS.size();
+    }
+}
 

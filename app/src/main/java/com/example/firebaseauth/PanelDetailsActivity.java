@@ -53,7 +53,9 @@ public class PanelDetailsActivity extends AppCompatActivity {
         imageUrl = findViewById(R.id.panel_details_image_view);
     }
 
-    private void setInfo(String panelTypeInfo, String powerInfo, String capacityInfo, String usagePeriodInfo, String addressInfo, String imageUrlInfo) {
+    private void setInfo(String panelTypeInfo, String powerInfo,
+                         String capacityInfo, String usagePeriodInfo,
+                         String addressInfo, String imageUrlInfo) {
         initViews();
         panelType.setText(panelTypeInfo);
         power.setText(powerInfo);
