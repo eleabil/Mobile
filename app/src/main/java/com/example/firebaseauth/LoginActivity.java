@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.firebaseauth.ApplicationEx;
+import com.example.firebaseauth.MainActivity;
+import com.example.firebaseauth.R;
+import com.example.firebaseauth.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -70,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                startActivity(new Intent(LoginActivity.this, DataListActivity.class));
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             } else {
                                 loginError();
                             }

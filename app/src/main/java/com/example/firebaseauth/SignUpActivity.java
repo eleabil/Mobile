@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, DataListActivity.class));
+                        SignUpActivity.this.startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                     }
                 }
             });
