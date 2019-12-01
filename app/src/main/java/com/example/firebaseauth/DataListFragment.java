@@ -57,6 +57,7 @@ public class DataListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         linearLayout = root.findViewById(R.id.linearLayout);
         swipeRefreshLayout = root.findViewById(R.id.data_list_swipe_refresh);
+
         setupSwipeToRefresh();
     }
 
@@ -75,8 +76,8 @@ public class DataListFragment extends Fragment {
 
     private void loadPanels(){
         swipeRefreshLayout.setRefreshing(true);
-        final ApiService apiService = getApplicationEx().getApiService();
-        final Call<List<Panel>> call = apiService.getPanels();
+        ApiService apiService = getApplicationEx().getApiService();
+        Call<List<Panel>> call = apiService.getPanels();
 
         call.enqueue(new Callback<List<Panel>>() {
             @Override

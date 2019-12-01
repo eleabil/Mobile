@@ -1,26 +1,39 @@
 package com.example.firebaseauth;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Panel {
 
-    private final String panelType;
-    private final String power;
-    private final String capacity;
-    private final String usagePeriod;
-    private final String address;
-    private final String photoUrl;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("model")
+    @Expose
+    private String model;
+    @SerializedName("power")
+    @Expose
+    private String power;
+    @SerializedName("address")
+    @Expose
+    private String address;
+    @SerializedName("capacity")
+    @Expose
+    private String capacity;
 
-    public Panel(final String panelType, final String power, final String capacity,
-                 final String usagePeriod, final String address, final String photoUrl) {
-        this.panelType = panelType;
+    public Panel(String model, String power, String capacity, String address) {
+        this.model = model;
         this.power = power;
         this.capacity = capacity;
-        this.usagePeriod = usagePeriod;
         this.address = address;
-        this.photoUrl = photoUrl;
     }
 
-    public String getPanelType() {
-        return panelType;
+    public Integer getId() {
+        return id;
+    }
+
+    public String getModel() {
+        return model;
     }
 
     public String getPower() {
@@ -31,15 +44,7 @@ public class Panel {
         return capacity;
     }
 
-    public String getUsagePeriod() {
-        return usagePeriod;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
     }
 }

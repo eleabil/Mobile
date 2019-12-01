@@ -3,7 +3,6 @@ package com.example.firebaseauth;
 import android.app.Application;
 
 import com.google.firebase.auth.FirebaseAuth;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,8 +27,8 @@ public class ApplicationEx extends Application {
     }
 
     private ApiService createApiService(){
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://us-central1-fir-auth-bed89.cloudfunctions.net/")
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://vxynj7feha.execute-api.us-west-2.amazonaws.com/dev/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
