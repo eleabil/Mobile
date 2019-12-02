@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.example.firebaseauth.api.ApiService;
+import com.example.firebaseauth.utils.ApplicationEx;
+import com.example.firebaseauth.entities.Panel;
+import com.example.firebaseauth.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -21,6 +24,7 @@ import retrofit2.Response;
 
 public class AddPanelActivity extends AppCompatActivity {
 
+    private final String PHOTO_URL = "https://images-na.ssl-images-amazon.com/images/I/61JPOTziZbL._SX425_.jpg";
     private TextInputLayout panelTypeFieldLayout;
     private TextInputLayout powerFieldLayout;
     private TextInputLayout capacityFieldLayout;
@@ -49,7 +53,7 @@ public class AddPanelActivity extends AppCompatActivity {
                 String capacity = Objects.requireNonNull(capacityField.getText()).toString().trim();
                 String address = Objects.requireNonNull(addressField.getText()).toString().trim();
                 if (isDataValid(model, power, capacity, address)){
-                    Panel panel = new Panel(model, power, capacity, address);
+                    Panel panel = new Panel(model, power, capacity, address, PHOTO_URL);
                     addPanel(panel);
                 }
             }

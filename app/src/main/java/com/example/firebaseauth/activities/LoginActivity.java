@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.firebaseauth.ApplicationEx;
-import com.example.firebaseauth.MainActivity;
+import com.example.firebaseauth.utils.ApplicationEx;
 import com.example.firebaseauth.R;
-import com.example.firebaseauth.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;

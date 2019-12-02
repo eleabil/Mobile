@@ -7,16 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".ApplicationEx"
+        android:name=".utils.ApplicationEx"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Solar Panels"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPanelActivity"
+        <activity android:name=".activities.AddPanelActivity"
             android:label="Add Panel"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -25,18 +25,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PanelDetailsActivity"
+            android:name=".activities.PanelDetailsActivity"
             android:label="Details" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="Log In"
             android:noHistory="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:label="Sign Up"
             android:noHistory="true" />
 
-        <receiver android:name=".NetworkChangeReceiver">
+        <receiver android:name=".utils.NetworkChangeReceiver">
             <intent-filter>
                 <action
                     android:name="android.net.conn.CONNECTIVITY_CHANGE"

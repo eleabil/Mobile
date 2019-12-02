@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.firebaseauth.entities.Panel;
+import com.example.firebaseauth.R;
+import com.example.firebaseauth.activities.PanelDetailsActivity;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -35,7 +39,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     @Override
     public void onBindViewHolder(final PanelViewHolder holder,
                                  final int position) {
-       // Picasso.get().load(panelList.get(position).getPhotoUrl()).into(holder.photoUrl);
+        Picasso.get().load(panelList.get(position).getPhotoUrl()).into(holder.photoUrl);
         holder.panelType.setText(panelList.get(position).getModel());
         holder.power.setText(panelList.get(position).getPower());
         holder.capacity.setText(panelList.get(position).getCapacity());
@@ -80,7 +84,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         intent.putExtra("power", panelList.get(position).getPower());
         intent.putExtra("capacity", panelList.get(position).getCapacity());
         intent.putExtra("address", panelList.get(position).getAddress());
-      //  intent.putExtra("image", panelList.get(position).getPhotoUrl());
+        intent.putExtra("image", panelList.get(position).getPhotoUrl());
 
         context.startActivity(intent);
     }

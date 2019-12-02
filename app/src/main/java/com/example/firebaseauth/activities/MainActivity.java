@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.firebaseauth.R;
+import com.example.firebaseauth.adapters.TabsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;

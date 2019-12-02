@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.firebaseauth.R;
 import com.squareup.picasso.Picasso;
 import java.util.Objects;
 
@@ -26,22 +28,6 @@ public class PanelDetailsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    private void getIncomingIntent() {
-        if (getIntent().hasExtra("panel_type") &&
-                getIntent().hasExtra("power") &&
-                getIntent().hasExtra("capacity") &&
-              //  getIntent().hasExtra("usage_period") &&
-                getIntent().hasExtra("address")) {
-            String panelTypeInfo = getIntent().getStringExtra("panel_type");
-            String powerInfo = getIntent().getStringExtra("power");
-            String capacityInfo = getIntent().getStringExtra("capacity");
-        //    String usagePeriodInfo = getIntent().getStringExtra("usage_period");
-            String addressInfo = getIntent().getStringExtra("address");
-            String imageUrlInfo = getIntent().getStringExtra("image");
-
-            setInfo(panelTypeInfo, powerInfo, capacityInfo, addressInfo, imageUrlInfo);
-        }
-    }
 
     private void initViews(){
         panelType = findViewById(R.id.panel_details_type);
@@ -49,6 +35,21 @@ public class PanelDetailsActivity extends AppCompatActivity {
         capacity = findViewById(R.id.panel_details_capacity);
         address = findViewById(R.id.panel_details_address);
         imageUrl = findViewById(R.id.panel_details_image_view);
+    }
+
+    private void getIncomingIntent() {
+        if (getIntent().hasExtra("panel_type") &&
+                getIntent().hasExtra("power") &&
+                getIntent().hasExtra("capacity") &&
+                getIntent().hasExtra("address")) {
+            String panelTypeInfo = getIntent().getStringExtra("panel_type");
+            String powerInfo = getIntent().getStringExtra("power");
+            String capacityInfo = getIntent().getStringExtra("capacity");
+            String addressInfo = getIntent().getStringExtra("address");
+            String imageUrlInfo = getIntent().getStringExtra("image");
+
+            setInfo(panelTypeInfo, powerInfo, capacityInfo, addressInfo, imageUrlInfo);
+        }
     }
 
     private void setInfo(String panelTypeInfo, String powerInfo, String capacityInfo,

@@ -1,4 +1,6 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.api;
+
+import com.example.firebaseauth.entities.Panel;
 
 import java.util.List;
 import retrofit2.Call;

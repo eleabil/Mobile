@@ -42,4 +42,8 @@
     <string name="add_panel">Add panel</string>
     <string name="add">Add</string>
     <string name="required">Required field</string>
+    <string name="panel_type_print">Panel type:</string>
+    <string name="power_print">Power:</string>
+    <string name="capacity_print">Capacity:</string>
+    <string name="address_print">Address:</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.entities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -20,12 +20,16 @@ public class Panel {
     @SerializedName("capacity")
     @Expose
     private String capacity;
+    @SerializedName("photo_url")
+    @Expose
+    private String photoUrl;
 
-    public Panel(String model, String power, String capacity, String address) {
+    public Panel(String model, String power, String capacity, String address, String photoUrl) {
         this.model = model;
         this.power = power;
         this.capacity = capacity;
         this.address = address;
+        this.photoUrl = photoUrl;
     }
 
     public Integer getId() {
@@ -46,5 +50,9 @@ public class Panel {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getPhotoUrl(){
+        return  photoUrl;
     }
 }
