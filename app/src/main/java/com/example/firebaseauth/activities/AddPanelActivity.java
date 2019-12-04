@@ -48,20 +48,24 @@ public class AddPanelActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String model = Objects.requireNonNull(panelTypeField.getText()).toString().trim();
-                String power = Objects.requireNonNull(powerField.getText()).toString().trim();
-                String capacity = Objects.requireNonNull(capacityField.getText()).toString().trim();
-                String address = Objects.requireNonNull(addressField.getText()).toString().trim();
-                if (isDataValid(model, power, capacity, address)){
-                    Panel panel = new Panel(model, power, capacity, address, PHOTO_URL);
-                    addPanel(panel);
-                }
+                onPressAddBtn();
             }
         });
     }
 
+    private void onPressAddBtn() {
+        String model = Objects.requireNonNull(panelTypeField.getText()).toString().trim();
+        String power = Objects.requireNonNull(powerField.getText()).toString().trim();
+        String capacity = Objects.requireNonNull(capacityField.getText()).toString().trim();
+        String address = Objects.requireNonNull(addressField.getText()).toString().trim();
+        if (isDataValid(model, power, capacity, address)){
+            Panel panel = new Panel(model, power, capacity, address, PHOTO_URL);
+            addPanel(panel);
+        }
+    }
+
     private void addPanel(Panel panel){
-        ApiService apiService = getApplicationEx().getApiService();
+        final ApiService apiService = getApplicationEx().getApiService();
         Call<Panel> call = apiService.createPanel(panel);
         progressBar.setVisibility(View.VISIBLE);
         call.enqueue(new Callback<Panel>() {
@@ -109,54 +113,21 @@ public class AddPanelActivity extends AppCompatActivity {
     }
 
     private boolean isDataValid(String model, String power, String capacity, String address){
-        boolean modelValid = isModelValid(model);
-        boolean powerValid = isPowerValid(power);
-        boolean capacityValid = isCapacityValid(capacity);
-        boolean addressValid = isAddressValid(address);
+        boolean modelValid = isFieldValid(model, panelTypeFieldLayout);
+        boolean powerValid = isFieldValid(power, powerFieldLayout);
+        boolean capacityValid = isFieldValid(capacity, capacityFieldLayout);
+        boolean addressValid = isFieldValid(address, addressFieldLayout);
 
         return modelValid && powerValid && capacityValid && addressValid;
     }
 
-    private boolean isAddressValid(String address) {
-        if (address.isEmpty()){
-            addressFieldLayout.setError(getString(R.string.required));
-            addressFieldLayout.requestFocus();
+    private boolean isFieldValid(String field, TextInputLayout fieldLayout){
+        if (field.isEmpty()){
+            fieldLayout.setError(getString(R.string.required));
+            fieldLayout.requestFocus();
             return false;
         } else {
-            addressFieldLayout.setError(null);
-            return true;
-        }
-    }
-
-    private boolean isCapacityValid(String capacity) {
-        if (capacity.isEmpty()){
-            capacityFieldLayout.setError(getString(R.string.required));
-            capacityFieldLayout.requestFocus();
-            return false;
-        } else {
-            capacityFieldLayout.setError(null);
-            return true;
-        }
-    }
-
-    private boolean isPowerValid(String power) {
-        if (power.isEmpty()){
-            powerFieldLayout.setError(getString(R.string.required));
-            powerFieldLayout.requestFocus();
-            return false;
-        } else {
-            powerFieldLayout.setError(null);
-            return true;
-        }
-    }
-
-    private boolean isModelValid(String model) {
-        if (model.isEmpty()){
-            panelTypeFieldLayout.setError(getString(R.string.required));
-            panelTypeFieldLayout.requestFocus();
-            return false;
-        } else {
-            panelTypeFieldLayout.setError(null);
+            fieldLayout.setError(null);
             return true;
         }
     }

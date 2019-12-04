@@ -82,7 +82,7 @@ public class DataListFragment extends Fragment {
 
     private void loadPanels(){
         swipeRefreshLayout.setRefreshing(true);
-        ApiService apiService = getApplicationEx().getApiService();
+        final ApiService apiService = getApplicationEx().getApiService();
         Call<List<Panel>> call = apiService.getPanels();
         call.enqueue(new Callback<List<Panel>>() {
             @Override

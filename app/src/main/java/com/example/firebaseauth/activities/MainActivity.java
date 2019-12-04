@@ -19,19 +19,14 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private TabsAdapter tabsAdapter;
     private FloatingActionButton floatingActionButton;
+    private static final String[] tabTitles = {"Panels", "Tab 2", "Profile"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = findViewById(R.id.main_activity_view_pager);
-        tabsAdapter = new TabsAdapter(getSupportFragmentManager(), getLifecycle());
-
-        viewPager.setAdapter(tabsAdapter);
-
-        floatingActionButton = findViewById(R.id.floating_action_button);
-
+        initViews();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final String[] tabTitles = new String[]{"Panels", "Tab 2", "Profile"};
         final TabLayout tabLayout = findViewById(R.id.main_activity_tab_layout);
         new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
@@ -50,5 +44,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         ).attach();
+    }
+
+    private void initViews() {
+        floatingActionButton = findViewById(R.id.floating_action_button);
+        viewPager = findViewById(R.id.main_activity_view_pager);
+        tabsAdapter = new TabsAdapter(getSupportFragmentManager(), getLifecycle());
+        viewPager.setAdapter(tabsAdapter);
     }
 }
