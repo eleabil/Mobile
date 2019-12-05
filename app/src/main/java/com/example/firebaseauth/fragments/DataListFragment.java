@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.fragments;
 
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -14,6 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.firebaseauth.api.ApiService;
+import com.example.firebaseauth.utils.ApplicationEx;
+import com.example.firebaseauth.utils.NetworkChangeReceiver;
+import com.example.firebaseauth.entities.Panel;
+import com.example.firebaseauth.adapters.PanelAdapter;
+import com.example.firebaseauth.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -57,6 +63,7 @@ public class DataListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         linearLayout = root.findViewById(R.id.linearLayout);
         swipeRefreshLayout = root.findViewById(R.id.data_list_swipe_refresh);
+
         setupSwipeToRefresh();
     }
 
@@ -76,8 +83,7 @@ public class DataListFragment extends Fragment {
     private void loadPanels(){
         swipeRefreshLayout.setRefreshing(true);
         final ApiService apiService = getApplicationEx().getApiService();
-        final Call<List<Panel>> call = apiService.getPanels();
-
+        Call<List<Panel>> call = apiService.getPanels();
         call.enqueue(new Callback<List<Panel>>() {
             @Override
             public void onResponse(final Call<List<Panel>> call,

@@ -17,11 +17,31 @@
         android:layout_gravity="center"/>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/panel_details_type_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="36dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/panel_type_print"
+        android:textColor="@color/colorPrimaryDark">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/panel_details_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:paddingTop="36dp"
+        android:textColor="@color/colorPrimaryDark">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/panel_details_power_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/power_print"
         android:textColor="@color/colorPrimaryDark">
     </com.google.android.material.textview.MaterialTextView>
 
@@ -34,6 +54,16 @@
     </com.google.android.material.textview.MaterialTextView>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/panel_details_capacity_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/capacity_print"
+        android:textColor="@color/colorPrimaryDark">
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/panel_details_capacity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,10 +72,12 @@
     </com.google.android.material.textview.MaterialTextView>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/panel_details_usage_period"
+        android:id="@+id/panel_details_address_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/address_print"
         android:textColor="@color/colorPrimaryDark">
     </com.google.android.material.textview.MaterialTextView>
 

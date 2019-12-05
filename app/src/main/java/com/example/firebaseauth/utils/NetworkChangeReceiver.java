@@ -1,4 +1,4 @@
-package com.example.firebaseauth;
+package com.example.firebaseauth.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.view.View;
 
+import com.example.firebaseauth.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
